@@ -9,6 +9,7 @@ import { ThreadCard } from "@/components/thread/thread-card"
 import { ThreadSkeleton } from "@/components/thread/thread-skeleton"
 import { useThreadStore } from "@/store/thread-store"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const mockThreads = [
   {
@@ -331,76 +332,147 @@ export default function Home() {
     setThreads(mockThreads)
   }, [setThreads])
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       
       <main className="container mx-auto px-4 py-16">
-        <section className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
+        <motion.section 
+          className="py-20 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold mb-6 text-foreground"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             Welcome to Forum
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             A vibrant community platform where ideas connect, discussions flourish, and knowledge is shared.
-          </p>
+          </motion.p>
           
-          <div className="flex justify-center gap-4">
+          <motion.div 
+            className="flex justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <Button variant="default" size="lg">
               Join Now
             </Button>
-            <Link href="/about" className="w-full">
+            <Link href="/about">
               <Button variant="outline" size="lg">
                 Learn More
               </Button>
             </Link>
+          </motion.div>
+        </motion.section>
+
+        <motion.section 
+          className="mt-16 grid md:grid-cols-3 gap-8"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div variants={item}>
+            <Card>
+              <CardHeader>
+                <CardTitle>Engage</CardTitle>
+                <CardDescription>Participate in meaningful discussions</CardDescription>
+              </CardHeader>
+              <CardContent>
+                Connect with like-minded individuals, share your perspectives, and learn from diverse viewpoints.
+              </CardContent>
+              <CardFooter>
+                <Link href="/trending">
+                  <Button variant="outline" className="w-full">View Trending</Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          </motion.div>
+
+          <motion.div variants={item}>
+            <Card>
+              <CardHeader>
+                <CardTitle>Discover</CardTitle>
+                <CardDescription>Explore new ideas</CardDescription>
+              </CardHeader>
+              <CardContent>
+                Browse through a wide range of topics, from technology to arts, and expand your knowledge.
+              </CardContent>
+              <CardFooter>
+                <Link href="/categories">
+                  <Button variant="outline" className="w-full">Browse Categories</Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          </motion.div>
+
+          <motion.div variants={item}>
+            <Card>
+              <CardHeader>
+                <CardTitle>Grow</CardTitle>
+                <CardDescription>Build your network</CardDescription>
+              </CardHeader>
+              <CardContent>
+                Create connections, collaborate on projects, and be part of a supportive community.
+              </CardContent>
+              <CardFooter>
+                <Link href="/signup">
+                  <Button variant="outline" className="w-full">Join Now</Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          </motion.div>
+        </motion.section>
+
+        <section className="mt-16">
+          <motion.h2 
+            className="text-2xl font-bold mb-8"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Recent Discussions
+          </motion.h2>
+          <div className="grid gap-4">
+            <Suspense fallback={<ThreadSkeleton />}>
+              {threads.map((thread) => (
+                <motion.div
+                  key={thread.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <ThreadCard thread={thread} />
+                </motion.div>
+              ))}
+            </Suspense>
           </div>
-        </section>
-
-        <section className="mt-16 grid md:grid-cols-3 gap-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>Engage</CardTitle>
-              <CardDescription>Participate in meaningful discussions</CardDescription>
-            </CardHeader>
-            <CardContent>
-              Connect with like-minded individuals, share your perspectives, and learn from diverse viewpoints.
-            </CardContent>
-            <CardFooter>
-              <Link href="/trending" className="w-full">
-                <Button variant="outline" className="w-full">View Trending</Button>
-              </Link>
-            </CardFooter>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Discover</CardTitle>
-              <CardDescription>Explore new ideas</CardDescription>
-            </CardHeader>
-            <CardContent>
-              Browse through a wide range of topics, from technology to arts, and expand your knowledge.
-            </CardContent>
-            <CardFooter>
-              <Link href="/categories" className="w-full">
-                <Button variant="outline" className="w-full">Browse Categories</Button>
-              </Link>
-            </CardFooter>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Grow</CardTitle>
-              <CardDescription>Build your network</CardDescription>
-            </CardHeader>
-            <CardContent>
-              Create connections, collaborate on projects, and be part of a supportive community.
-            </CardContent>
-            <CardFooter>
-              <Link href="/signup" className="w-full">
-                <Button variant="outline" className="w-full">Join Now</Button>
-              </Link>
-            </CardFooter>
-          </Card>
         </section>
       </main>
     </div>
