@@ -1,4 +1,4 @@
-// File: /home/keel/CascadeProjects/forum-new/src/app/trending/page.tsx
+// File: /home/keel/CascadeProjects/forum/src/app/trending/page.tsx
 import * as entry from '../../../../src/app/trending/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

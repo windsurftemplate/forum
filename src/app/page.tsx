@@ -8,7 +8,7 @@ import { Sidebar } from "@/components/sidebar/sidebar"
 import { ThreadCard } from "@/components/thread/thread-card"
 import { ThreadSkeleton } from "@/components/thread/thread-skeleton"
 import { useThreadStore } from "@/store/thread-store"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 
 const mockThreads = [
   {
@@ -348,9 +348,11 @@ export default function Home() {
             <Button variant="default" size="lg">
               Join Now
             </Button>
-            <Button variant="outline" size="lg">
-              Learn More
-            </Button>
+            <Link href="/about" className="w-full">
+              <Button variant="outline" size="lg">
+                Learn More
+              </Button>
+            </Link>
           </div>
         </section>
 
@@ -363,6 +365,11 @@ export default function Home() {
             <CardContent>
               Connect with like-minded individuals, share your perspectives, and learn from diverse viewpoints.
             </CardContent>
+            <CardFooter>
+              <Link href="/trending" className="w-full">
+                <Button variant="outline" className="w-full">View Trending</Button>
+              </Link>
+            </CardFooter>
           </Card>
 
           <Card>
@@ -373,6 +380,11 @@ export default function Home() {
             <CardContent>
               Browse through a wide range of topics, from technology to arts, and expand your knowledge.
             </CardContent>
+            <CardFooter>
+              <Link href="/categories" className="w-full">
+                <Button variant="outline" className="w-full">Browse Categories</Button>
+              </Link>
+            </CardFooter>
           </Card>
 
           <Card>
@@ -383,6 +395,11 @@ export default function Home() {
             <CardContent>
               Create connections, collaborate on projects, and be part of a supportive community.
             </CardContent>
+            <CardFooter>
+              <Link href="/signup" className="w-full">
+                <Button variant="outline" className="w-full">Join Now</Button>
+              </Link>
+            </CardFooter>
           </Card>
         </section>
       </main>

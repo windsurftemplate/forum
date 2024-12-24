@@ -62,6 +62,3 @@ htmlcov/
 
 # Local development settings
 local_settings.py
-node_modulesnode_modules/@next/swc-*
-node_modules/
-node_modules/@next/swc-*
