@@ -323,12 +323,11 @@ const mockThreads = [
 ]
 
 export default function Home() {
-  // TODO: Replace with actual user ID from authentication
-  const currentUserId = "user-1"
   const { threads, setThreads } = useThreadStore()
+  const currentUserId = ""; // TODO: Replace with actual user ID from auth
 
   useEffect(() => {
-    // Initialize the thread store with mock data
+    // Initialize with mock data
     setThreads(mockThreads)
   }, [setThreads])
 
@@ -468,7 +467,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <ThreadCard thread={thread} />
+                  <ThreadCard thread={thread} currentUserId={currentUserId} />
                 </motion.div>
               ))}
             </Suspense>
