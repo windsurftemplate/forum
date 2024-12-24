@@ -1,0 +1,67 @@
+# Python-specific ignores
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+venv/
+env/
+.env/
+.venv/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Logs
+*.log
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Dependency directories
+node_modules/
+
+# Backup files
+*.bak
+*.backup
+
+# Temporary files
+*.tmp
+*~
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Testing and coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Local development settings
+local_settings.py
+node_modulesnode_modules/@next/swc-*
+node_modules/
+node_modules/@next/swc-*
